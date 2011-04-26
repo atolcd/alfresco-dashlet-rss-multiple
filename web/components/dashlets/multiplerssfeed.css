@@ -1,0 +1,112 @@
+/*
+ * Copyright (C) 2011 Atol Conseils et Développements.
+ * http://www.atolcd.com/
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/* Dashlet*/
+.rssfeed .refresh {
+  background-image: url("images/refresh.png");
+  float: right;
+  height: 16px;
+  left: -8px;
+  position: relative;
+  top: 4px;
+  width: 16px;
+}
+
+.rssfeed .refresh-loading {
+  background-image: url("images/refresh_loading.gif");
+  float: right;
+  height: 16px;
+  left: -8px;
+  position: relative;
+  top: 4px;
+  width: 16px;
+}
+
+.rssfeed .refresh a, .rssfeed .refresh a:active, .rssfeed .refresh a:hover {
+  display: block;
+  height: 16px;
+  text-decoration: none;
+  width: 16px;
+}
+
+.rssfeed .refresh a:hover {
+  background-image: url("images/refresh_hover.png");
+}
+
+.rssfeed .headline .rss-date {
+  font-size: 0.8em;
+  font-weight: bold;
+  padding-bottom: 5px;
+  padding-top: 1px;
+}
+
+/* Dialog */
+.add-feed-button-container {
+  padding: 10px 0 0 10px !important;
+}
+
+.add-feed-button-container .add-feed-button button {
+  background: url("images/feed-icon-16.png") no-repeat scroll 5% 50% transparent;
+  padding-left: 2.25em !important;
+  font-weight: bold;
+}
+
+.yui-gd .rss-datatable-container {
+  padding: 0 0 10px 10px;
+}
+
+.rss-gd {
+  height: 22px;
+  padding: 10px;
+}
+
+.rss-gd label {
+  width:260px;
+  display:block;
+  float:left;
+}
+
+
+/* DataTable */
+.feed-color-icon-container {
+  text-align: center;
+}
+
+.feed-color-icon {
+  border: 1px solid;
+  float: left;
+  height: 10px;
+  width: 10px;
+}
+
+.rss-cell-center {
+  text-align: center !important;
+}
+
+
+/* ColorPicker */
+#rss-color-picker-container {
+    width: 220px;
+    height: 190px;
+}
+
+/* Hide default colors for the ColorPicker instance. */
+#rss-color-picker-container .yui-picker-controls, #rss-color-picker-container .yui-picker-swatch, #rss-color-picker-container .yui-picker-websafe-swatch {
+  display: none;
+}
