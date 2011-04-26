@@ -1,0 +1,12 @@
+Check out the project :
+  svn checkout http://labs.atolcd.com/svn/dashlet-rss-multiple/trunk
+
+
+An Ant build script is provided to build a JAR file or an AMP file.
+
+
+To build the JAR file, run the following command from the base project directory:
+  ant package-dist-jar
+
+To build the AMP file, run the following command:
+  ant package-dist-amp
