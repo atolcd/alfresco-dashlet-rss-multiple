@@ -1,5 +1,5 @@
 <#--
- * Copyright (C) 2011 Atol Conseils et Développements.
+ * Copyright (C) 2012 Atol Conseils et Développements.
  * http://www.atolcd.com/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
   <div class="hd">${msg("label.dashlet.multiplerssfeed.header")}</div>
   <div class="bd">
     <div id="${el}-contextMenuContainer"></div>
-    <div id="${el}-deleteRowContextMenu"></div>
+    <div id="${el}-deleteRowContextMenu"><div class="bd"></div></div>
 
     <div class="yui-gd add-feed-button-container">
       <span id="${el}-addfeed" class="yui-button yui-push-button add-feed-button">

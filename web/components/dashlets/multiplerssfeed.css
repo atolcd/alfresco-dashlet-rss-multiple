@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 Atol Conseils et Développements.
+ * Copyright (C) 2012 Atol Conseils et Développements.
  * http://www.atolcd.com/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,32 +20,13 @@
 /* Dashlet*/
 .rssfeed .refresh {
   background-image: url("images/refresh.png");
-  float: right;
-  height: 16px;
-  left: -8px;
-  position: relative;
-  top: 4px;
-  width: 16px;
 }
 
 .rssfeed .refresh-loading {
   background-image: url("images/refresh_loading.gif");
-  float: right;
-  height: 16px;
-  left: -8px;
-  position: relative;
-  top: 4px;
-  width: 16px;
 }
 
-.rssfeed .refresh a, .rssfeed .refresh a:active, .rssfeed .refresh a:hover {
-  display: block;
-  height: 16px;
-  text-decoration: none;
-  width: 16px;
-}
-
-.rssfeed .refresh a:hover {
+.rssfeed .refresh:hover {
   background-image: url("images/refresh_hover.png");
 }
 
@@ -102,8 +83,8 @@
 
 /* ColorPicker */
 #rss-color-picker-container {
-    width: 220px;
-    height: 190px;
+  width: 220px;
+  height: 190px;
 }
 
 /* Hide default colors for the ColorPicker instance. */

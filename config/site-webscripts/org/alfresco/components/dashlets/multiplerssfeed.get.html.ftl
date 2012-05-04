@@ -1,5 +1,5 @@
 <#--
- * Copyright (C) 2011 Atol Conseils et Développements.
+ * Copyright (C) 2012 Atol Conseils et Développements.
  * http://www.atolcd.com/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,9 +18,12 @@
 
 <#import "/org/alfresco/utils/multiplefeed.utils.ftl" as feedLib/>
 
-<#assign el=args.htmlid?js_string>
+<#assign id = args.htmlid>
+<#assign jsid = args.htmlid?js_string>
 <script type="text/javascript">//<![CDATA[
-   new Alfresco.dashlet.MultipleRssFeed("${el}").setOptions(
+(function()
+{
+   var rssFeed = new Alfresco.dashlet.MultipleRssFeed("${jsid}").setOptions(
    {
       "componentId": "${instance.object.id}",
       "target": "${target!''}",
@@ -28,19 +31,41 @@
       "feeds": "${feeds!"[]"}",
       "site": "${page.url.templateArgs.site!''}"
    });
-   new Alfresco.widget.DashletResizer("${el}", "${instance.object.id}");
+
+   new Alfresco.widget.DashletResizer("${jsid}", "${instance.object.id}");
+
+   var refreshDashletEvent = new YAHOO.util.CustomEvent("refreshDashletClick");
+   refreshDashletEvent.subscribe(rssFeed.onRefresh, rssFeed, true);
+
+   var rssFeedDashletEvent = new YAHOO.util.CustomEvent("onConfigFeedClick");
+   rssFeedDashletEvent.subscribe(rssFeed.onConfigFeedClick, rssFeed, true);
+
+   new Alfresco.widget.DashletTitleBarActions("${jsid}").setOptions(
+   {
+      actions:
+      [
+        <#if userIsSiteManager>
+         {
+            cssClass: "edit",
+            eventOnClick: rssFeedDashletEvent,
+            tooltip: "${msg("dashlet.edit.tooltip")?js_string}"
+         },
+        </#if>
+         {
+            cssClass: "refresh",
+            id: "-refresh",
+            eventOnClick: refreshDashletEvent,
+            tooltip: "${msg("label.dashlet.refresh.tooltip")?js_string}"
+         }
+      ]
+   });
+})();
 //]]>
 </script>
 
 <div class="dashlet rssfeed">
-  <div class="refresh" id="${el}-refresh"><a href="#">&nbsp;</a></div>
-  <div class="title" style="overflow-x: visible;" id="${el}-title"><#if title?has_content>${title}<#else>${msg("label.dashlet.multiplerssfeed.default.title")}</#if></div>
-  <#if userIsSiteManager>
-    <div class="toolbar">
-      <a href="#" id="${el}-configFeed-link" class="theme-color-1">${msg("label.dashlet.multiplerssfeed.configure")}</a>
-    </div>
-  </#if>
-  <div class="body scrollableList" <#if args.height??>style="height: ${args.height}px;"</#if> id="${el}-scrollableList">
+  <div class="title" id="${jsid}-title"><#if title?has_content>${title}<#else>${msg("label.dashlet.multiplerssfeed.default.title")}</#if></div>
+  <div class="body scrollableList" <#if args.height??>style="height: ${args.height}px;"</#if> id="${jsid}-scrollableList">
     <#if items?? && items?size &gt; 0>
       <#list items?sort_by("date")?reverse as item>
         <@feedLib.renderItem item=item target=target first=(item_index == 0)/>

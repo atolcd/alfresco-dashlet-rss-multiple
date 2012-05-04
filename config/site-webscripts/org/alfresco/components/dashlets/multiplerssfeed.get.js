@@ -1,7 +1,7 @@
 <import resource="classpath:alfresco/site-webscripts/org/alfresco/utils/multiplefeed.utils.js">
 
 /*
- * Copyright (C) 2011 Atol Conseils et Développements.
+ * Copyright (C) 2012 Atol Conseils et Développements.
  * http://www.atolcd.com/
  *
  * This program is free software: you can redistribute it and/or modify

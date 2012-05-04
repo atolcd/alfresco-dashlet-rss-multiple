@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 Atol Conseils et Développements.
+ * Copyright (C) 2012 Atol Conseils et Développements.
  * http://www.atolcd.com/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -121,15 +121,6 @@
      * @method onReady
      */
     onReady: function MRF_onReady() {
-      // Add click handler to config feed link that will be visible if user is site manager.
-      var configFeedLink = Dom.get(this.id + "-configFeed-link");
-      if (configFeedLink) {
-        Event.addListener(configFeedLink, "click", this.onConfigFeedClick, this, true);
-      }
-
-      // Add click handler to refresh icon
-      Event.addListener(this.id + "-refresh", "click", this.onRefresh, this, true);
-
       // Custom event
       this.onDataTableChangeEvent = new YAHOO.util.CustomEvent("onDataTableChangeEvent", this);
       this.onDataTableChangeEvent.subscribe(this.onDataTableChange, this);
@@ -261,9 +252,14 @@
         Dom.setXY(elContainer, Dom.getXY(elTd));
       };
 
-      YAHOO.util.Dom.getElementsByClassName('yui-dt-editor', 'div', document.body, function (el) {
-        me.feedsDataTable.getTableEl().parentNode.appendChild(el);
-      });
+      this.feedsDataTable.doBeforeShowCellEditor = function(oCellEditor) {
+        YAHOO.util.Dom.getElementsByClassName('yui-dt-editor', 'div', document.body, function(el) {
+          me.feedsDataTable.getTableEl().parentNode.appendChild(el);
+        });
+        oCellEditor.move();
+
+        return true;
+      };
       /*******************************/
     },
 
