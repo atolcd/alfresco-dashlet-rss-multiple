@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
-<project name="AMP Build File" default="package-dist-amp" basedir=".">
+<project name="Multiple RSS Feed Dashlet Build Script" default="dist-amp" basedir=".">
+  <property file="module.properties" />
+  <property file="build.properties" />
 
-  <!-- Directories -->
+  <property name="jar.file.name" value="${jar.name}-${module.version}.jar" />
+  <property name="amp.share.file.name" value="${amp.share.name}-v${module.version}.amp" />
+
   <property name="project.dir" value="."/>
   <property name="dist.dir" value="${project.dir}/dist"/>
   <property name="build.dir" value="${project.dir}/build"/>
@@ -9,15 +13,8 @@
   <property name="config.dir" value="${project.dir}/config" />
   <property name="web.dir" value="${project.dir}/web" />
 
-  <!-- Files -->
-  <property name="module.id" value="multiple-rss-feeds-share-dashlet"/>
-  <property name="jar.file.name" value="${dist.dir}/${module.id}.jar" />
-  <property name="amp.file.name" value="${dist.dir}/${module.id}.amp"/>
-
   <!-- YUI compressor -->
   <property name="yuicompress.warn" value="false" />
-
-
 
   <path id="yuicompressor.classpath">
     <fileset dir="lib">
@@ -52,20 +49,18 @@
   </target>
 
 
-
-
   <!--                       -->
   <!--      Package AMP      -->
   <!--                       -->
 
   <!-- Package AMP for Share -->
-  <target name="package-dist-amp" depends="mkdirs" description="Package the Module for Share" >
+  <target name="dist-amp" depends="mkdirs" description="Package the Module for Share" >
     <!-- Minify JS -->
     <yuicompress fromdir="${web.dir}" todir="${web.dir}" excludes="**/*-min.js" warn="yuicompress.warn">
       <include name="**/*.js" />
     </yuicompress>
 
-    <zip destfile="${amp.file.name}" update="true">
+    <zip destfile="${dist.dir}/${amp.share.file.name}" update="true">
       <fileset dir="${project.dir}/" includes="*.properties" />
 
       <!-- Webscripts -->
@@ -79,19 +74,16 @@
   </target>
 
 
-
-
   <!--                       -->
   <!--      Package JAR      -->
   <!--                       -->
 
   <!-- Build a JAR file containing configuration and resource files -->
-  <target name="package-dist-jar" depends="mkdirs, build-jar">
-    <jar destfile="${jar.file.name}">
+  <target name="dist-jar" depends="mkdirs, build-jar">
+    <jar destfile="${dist.dir}/${jar.file.name}">
       <fileset dir="${build.jar.dir}" />
     </jar>
   </target>
-
 
   <!-- Assemble configuration and resource files in a JAR file structure -->
   <target name="build-jar">
