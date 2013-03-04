@@ -33,7 +33,7 @@ This extension is a standard Alfresco Module, so experienced users can skip thes
 
 ### 2nd method: Installing AMPs
 1. Stop Alfresco
-2. Use the Alfresco [Module Management Tool](http://wiki.alfresco.com/wiki/Module_Management_Tool) to install the modules in your Alfresco and Share WAR files:
+2. Use the Alfresco [Module Management Tool](http://wiki.alfresco.com/wiki/Module_Management_Tool) to install the module in your Share WAR file:
 
         java -jar alfresco-mmt.jar install multiple-rss-feeds-share-dashlet-vX.X.X.amp $TOMCAT_HOME/webapps/share.war -force
 
